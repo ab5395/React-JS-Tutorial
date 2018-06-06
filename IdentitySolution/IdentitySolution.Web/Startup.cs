@@ -32,12 +32,12 @@ namespace IdentitySolution.Web
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = false;
-                options.Password.RequiredUniqueChars = 6;
+                //options.Password.RequireDigit = true;
+                //options.Password.RequiredLength = 8;
+                //options.Password.RequireNonAlphanumeric = false;
+                //options.Password.RequireUppercase = true;
+                //options.Password.RequireLowercase = false;
+                //options.Password.RequiredUniqueChars = 6;
 
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
@@ -82,6 +82,10 @@ namespace IdentitySolution.Web
             }
 
             app.UseStaticFiles();
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            app.UseIdentity();
+#pragma warning restore CS0618 // Type or member is obsolete
 
             app.UseMvc(routes =>
             {
