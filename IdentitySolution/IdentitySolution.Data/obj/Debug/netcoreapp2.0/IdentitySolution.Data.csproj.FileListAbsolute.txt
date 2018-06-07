@@ -1,6 +1,5 @@
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.Data\bin\Debug\netcoreapp2.0\IdentitySolution.Data.deps.json
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.Data\bin\Debug\netcoreapp2.0\IdentitySolution.Data.dll
-E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.Data\obj\Debug\netcoreapp2.0\IdentitySolution.Data.csprojAssemblyReference.cache
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.Data\obj\Debug\netcoreapp2.0\IdentitySolution.Data.csproj.CoreCompileInputs.cache
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.Data\obj\Debug\netcoreapp2.0\IdentitySolution.Data.AssemblyInfoInputs.cache
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.Data\obj\Debug\netcoreapp2.0\IdentitySolution.Data.AssemblyInfo.cs
