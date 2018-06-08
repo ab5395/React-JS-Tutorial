@@ -1,60 +1,63 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Link, NavLink } from 'react-router-dom';
+import 'isomorphic-fetch';
 
 interface LoginState {
-    loginData: LoginForm;
+    username: string;
+    password: string;
 }
-
-export class LoginForm {
-    username: string = "";
-    password: string = "";
-}
-
-
 
 export class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
     constructor() {
         super();
-        this.state = { loginData: new LoginForm };
+        this.state = { username: '', password: '' };
 
-        this.handleLogin = this.handleLogin.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    public render() {
-        return <div>
-            {this.renderLoginForm()}
-        </div>;
+    handleUsernameChange(event: { target: { value: any; }; }) {
+        this.setState({ username: event.target.value });
     }
 
-    public renderLoginForm() {
-        return <div>
-            <h2>Login Form</h2>
-            <form onSubmit={this.handleLogin}>
-                <div>
-                    <label>Email</label>
-                    <input type="email" name="email" value={this.state.loginData.username} required />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" name="password" value={this.state.loginData.password} required />
-                </div>
-                <button type="submit" className="btn btn-default">Login</button>
-            </form>
-        </div>;
+    handlePasswordChange(event: { target: { value: any; }; }) {
+        this.setState({ password: event.target.value });
     }
 
-    private handleLogin(event) {
+    handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
-        const data = new FormData(event.target);
-
-        fetch('api/Employee/Create', {
+        alert('Username: ' + this.state.username);
+        alert('Password: ' + this.state.password);
+        let requestData = new FormData();
+        requestData.append("Username", this.state.username);
+        requestData.append("Password", this.state.password);
+        fetch('/GetToken', {
             method: 'POST',
-            body: data,
-
+            body: requestData,
         }).then((response) => response.json())
             .then((responseJson) => {
-                this.props.history.push("/fetchemployee");
+                var data = responseJson;
+                alert(data);
             })
     }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Email:
+                    <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+                </label>
+                <br />
+                <label>
+                    Password:
+                    <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                </label>
+                <br />
+                <input type="submit" value="Submit" />
+            </form>
+        );
+    }
 }
+
