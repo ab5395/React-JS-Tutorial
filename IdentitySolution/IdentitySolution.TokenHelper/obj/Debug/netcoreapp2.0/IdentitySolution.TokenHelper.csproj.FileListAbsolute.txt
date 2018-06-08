@@ -1,9 +1,9 @@
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\bin\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.deps.json
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\bin\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.dll
+E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\bin\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.pdb
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\obj\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.csprojAssemblyReference.cache
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\obj\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.csproj.CoreCompileInputs.cache
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\obj\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.AssemblyInfoInputs.cache
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\obj\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.AssemblyInfo.cs
-E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\bin\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.pdb
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\obj\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.dll
 E:\Angular\React\React JS Tutorial\IdentitySolution\IdentitySolution.TokenHelper\obj\Debug\netcoreapp2.0\IdentitySolution.TokenHelper.pdb

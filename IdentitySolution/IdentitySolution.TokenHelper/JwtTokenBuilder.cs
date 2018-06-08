@@ -41,9 +41,16 @@ namespace IdentitySolution.TokenHelper
             return this;
         }
 
-        public JwtTokenBuilder AddClaim(string type, string value)
+        public JwtTokenBuilder AddClaim(string type, string value, IList<string> roles)
         {
             this.claims.Add(type, value);
+            if (roles != null && roles.Count > 0)
+            {
+                foreach (var item in roles)
+                {
+                    this.claims.Add(ClaimTypes.Role, item);
+                }
+            }
             return this;
         }
 
@@ -66,9 +73,10 @@ namespace IdentitySolution.TokenHelper
             var claims = new List<Claim>
             {
               new Claim(JwtRegisteredClaimNames.Sub, this.subject),
-              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            }
+              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        }
             .Union(this.claims.Select(item => new Claim(item.Key, item.Value)));
+
 
             var token = new JwtSecurityToken(
                               issuer: this.issuer,

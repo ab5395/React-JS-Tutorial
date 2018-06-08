@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentitySolution.Data;
+using IdentitySolution.TokenHelper;
 using IdentitySolution.Web.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace IdentitySolution.Web
 {
@@ -60,6 +63,45 @@ namespace IdentitySolution.Web
                 options.SlidingExpiration = true;
             });
             services.AddApplicationInsightsTelemetry(Configuration);
+
+            //Jwt Configuration
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+
+                            ValidIssuer = "Fiver.Security.Bearer",
+                            ValidAudience = "Fiver.Security.Bearer",
+                            IssuerSigningKey = JwtSecurityKey.Create()
+                        };
+
+                        options.Events = new JwtBearerEvents
+                        {
+                            OnAuthenticationFailed = context =>
+                            {
+                                Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                                return Task.CompletedTask;
+                            },
+                            OnTokenValidated = context =>
+                            {
+                                Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                                return Task.CompletedTask;
+                            }
+                        };
+                    });
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("Member", policy => policy.RequireClaim("MembershipId"));
+            //});
+
+            services.AddAuthorization();
+
             services.AddMvc();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -87,6 +129,8 @@ namespace IdentitySolution.Web
 #pragma warning disable CS0618 // Type or member is obsolete
             app.UseIdentity();
 #pragma warning restore CS0618 // Type or member is obsolete
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

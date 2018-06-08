@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentitySolution.Web.Controllers
 {
+    //[Authorize(AuthenticationSchemes = "Bearer",Roles ="Admin")]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
